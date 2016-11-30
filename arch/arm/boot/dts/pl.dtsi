@@ -33,14 +33,37 @@
 				xlnx,device-id = <0x0>;
 			};
 		};
+		axi_reg_test_0: axi_reg_test@43c00000 {
+			compatible = "generic-uio";
+			interrupt-parent = <&intc>;
+			interrupts = <0 31 4>;
+			reg = <0x43c00000 0x10000 0x43c10000 0x10000>;
+			xlnx,intr-active-state = <0xFFFFFFFF>;
+			xlnx,intr-sensitivity = <0xFFFFFFFF>;
+			xlnx,irq-active-state = <0x1>;
+			xlnx,irq-sensitivity = <0x1>;
+			xlnx,num-of-intr = <0x1>;
+			xlnx,s-axi-intr-addr-width = <0x5>;
+			xlnx,s-axi-intr-data-width = <0x20>;
+			xlnx,s00-axi-addr-width = <0x5>;
+			xlnx,s00-axi-data-width = <0x20>;
+		};
+		axi_timer_0: timer@42800000 {
+			clock-frequency = <100000000>;
+			clock-names = "ref_clk";
+			clocks = <&clkc 0>;
+			compatible = "generic-uio";
+			interrupt-parent = <&intc>;
+			interrupts = <0 32 4>;
+			reg = <0x42800000 0x10000>;
+			xlnx,count-width = <0x20>;
+			xlnx,gen0-assert = <0x1>;
+			xlnx,gen1-assert = <0x1>;
+			xlnx,one-timer-only = <0x1>;
+			xlnx,trig0-assert = <0x1>;
+			xlnx,trig1-assert = <0x1>;
+		};
 	};
-        dmatest_0: dmatest@0 {
-                compatible ="xlnx,axi-dma-test-1.00.a";
-                dmas = <&axi_dma_0 0
-                        &axi_dma_0 1>;
-                dma-names = "dma0", "dma1";
-        } ;
-
     ezdma0: dmatest@0 {
 	compatible = "ezdma";
 
